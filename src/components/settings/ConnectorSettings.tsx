@@ -17,7 +17,7 @@ const connectors = [
 
 export function ConnectorSettings() {
   const handleConnect = (name: string) => {
-    toast.info(`To connect ${name}, go to Project Settings → Connectors in Lovable.`);
+    toast.info(`Add ${name} credentials in your deployment settings or backend integration layer.`);
   };
 
   return (
@@ -49,7 +49,7 @@ export function ConnectorSettings() {
 
       <div className="flex items-start gap-2 rounded-md border border-muted p-3 text-sm text-muted-foreground">
         <ExternalLink className="h-4 w-4 mt-0.5 shrink-0" />
-        <span>Connectors are managed through Lovable's integration platform. Click "Connect" on any service to get started.</span>
+        <span>Connector credentials should be stored outside the browser and called through your API layer or Supabase Edge Functions.</span>
       </div>
     </div>
   );

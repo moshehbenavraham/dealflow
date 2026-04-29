@@ -34,7 +34,7 @@ export function useDealAuditLog(dealId: string | undefined) {
         }
       });
 
-      let stageMap: Record<string, string> = {};
+      const stageMap: Record<string, string> = {};
       if (stageIds.size > 0) {
         const { data: stages } = await supabase
           .from("pipeline_stages")

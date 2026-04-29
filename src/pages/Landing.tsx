@@ -3,12 +3,11 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
-import logoDiamond from "@/assets/logo-diamond.png";
 import heroDealImg from "@/assets/hero-deal.jpg";
 import jamieAvatar from "@/assets/jamie-avatar.jpg";
-import avatarAR from "@/assets/avatar-ar.png.asset.json";
-import avatarKL from "@/assets/avatar-kl.png.asset.json";
-import avatarMJ from "@/assets/avatar-mj.png.asset.json";
+import avatarAR from "@/assets/avatar-ar.svg";
+import avatarKL from "@/assets/avatar-kl.svg";
+import avatarMJ from "@/assets/avatar-mj.svg";
 
 import { DMark } from "@/components/DMark";
 
@@ -160,7 +159,6 @@ function StackedNotifications() {
 
 export default function Landing() {
   const { session, loading } = useAuth();
-  const logo = logoDiamond;
   
   const [showNav, setShowNav] = useState(false);
 
@@ -319,9 +317,9 @@ export default function Landing() {
                     <circle cx="70" cy="38" r="27" fill="white" />
                     <circle cx="140" cy="38" r="27" fill="white" />
                     <circle cx="210" cy="38" r="27" fill="white" />
-                    <image href={avatarAR.url} x="46" y="14" width="48" height="48" clipPath="url(#av1)" preserveAspectRatio="xMidYMid slice" />
-                    <image href={avatarKL.url} x="116" y="14" width="48" height="48" clipPath="url(#av2)" preserveAspectRatio="xMidYMid slice" />
-                    <image href={avatarMJ.url} x="186" y="14" width="48" height="48" clipPath="url(#av3)" preserveAspectRatio="xMidYMid slice" />
+                    <image href={avatarAR} x="46" y="14" width="48" height="48" clipPath="url(#av1)" preserveAspectRatio="xMidYMid slice" />
+                    <image href={avatarKL} x="116" y="14" width="48" height="48" clipPath="url(#av2)" preserveAspectRatio="xMidYMid slice" />
+                    <image href={avatarMJ} x="186" y="14" width="48" height="48" clipPath="url(#av3)" preserveAspectRatio="xMidYMid slice" />
 
                     {/* Deal cards — 2 pairs close together */}
                     <rect x="55" y="82" width="75" height="36" rx="8" fill="white" />
