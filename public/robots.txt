@@ -12,3 +12,16 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /dashboard
+Disallow: /pipeline
+Disallow: /contacts
+Disallow: /companies
+Disallow: /activities
+Disallow: /forecast
+Disallow: /reports
+Disallow: /settings
+Disallow: /data
+Disallow: /tasks
+Disallow: /calendar
+
+Sitemap: https://dealflow.app/sitemap.xml

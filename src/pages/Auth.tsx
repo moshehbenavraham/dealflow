@@ -11,6 +11,7 @@ import { z } from "zod";
 import { sanitizeErrorMessage } from "@/lib/sanitize";
 import { DMark } from "@/components/DMark";
 import { Separator } from "@/components/ui/separator";
+import { SEO } from "@/components/SEO";
 
 import authBgImage from "@/assets/hero-deal.jpg";
 
@@ -129,6 +130,12 @@ export default function Auth() {
 
   return (
     <div className="flex min-h-screen">
+      <SEO
+        title={isLogin ? "Sign in" : "Create your account"}
+        description="Sign in to Dealflow or create a free account to start tracking deals, contacts, and forecasts in minutes."
+        path="/auth"
+        noindex
+      />
       {/* Left panel */}
       <div className={`hidden lg:flex lg:w-1/2 overflow-hidden ${leftPanelClasses}`}>
         {/* Photo background */}
@@ -175,7 +182,7 @@ export default function Auth() {
           </div>
 
           <p className={`text-sm ${footerColor}`}>
-            © 2026 Dealflow. Built for modern sales teams.
+            © {new Date().getFullYear()} Dealflow. Built for modern sales teams.
           </p>
         </div>
       </div>
@@ -190,7 +197,7 @@ export default function Auth() {
             {isLogin ? "Sign in to your pipeline" : "Start closing deals in minutes"}
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             {!isLogin && (
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full name</Label>
@@ -201,8 +208,15 @@ export default function Auth() {
                   placeholder="Jane Smith"
                   required
                   maxLength={100}
+                  autoComplete="name"
+                  aria-invalid={Boolean(fieldErrors.fullName)}
+                  aria-describedby={fieldErrors.fullName ? "fullName-error" : undefined}
                 />
-                {fieldErrors.fullName && <p className="text-xs text-destructive">{fieldErrors.fullName}</p>}
+                {fieldErrors.fullName && (
+                  <p id="fullName-error" role="alert" className="text-xs text-destructive">
+                    {fieldErrors.fullName}
+                  </p>
+                )}
               </div>
             )}
             <div className="space-y-2">
@@ -215,8 +229,16 @@ export default function Auth() {
                 placeholder="jane@company.com"
                 required
                 maxLength={255}
+                autoComplete="email"
+                inputMode="email"
+                aria-invalid={Boolean(fieldErrors.email)}
+                aria-describedby={fieldErrors.email ? "email-error" : undefined}
               />
-              {fieldErrors.email && <p className="text-xs text-destructive">{fieldErrors.email}</p>}
+              {fieldErrors.email && (
+                <p id="email-error" role="alert" className="text-xs text-destructive">
+                  {fieldErrors.email}
+                </p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
@@ -229,8 +251,15 @@ export default function Auth() {
                 required
                 minLength={8}
                 maxLength={128}
+                autoComplete={isLogin ? "current-password" : "new-password"}
+                aria-invalid={Boolean(fieldErrors.password)}
+                aria-describedby={fieldErrors.password ? "password-error" : undefined}
               />
-              {fieldErrors.password && <p className="text-xs text-destructive">{fieldErrors.password}</p>}
+              {fieldErrors.password && (
+                <p id="password-error" role="alert" className="text-xs text-destructive">
+                  {fieldErrors.password}
+                </p>
+              )}
             </div>
             <Button type="submit" className="w-full" disabled={submitting}>
               {submitting ? (

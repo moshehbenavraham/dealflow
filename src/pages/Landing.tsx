@@ -10,6 +10,40 @@ import avatarKL from "@/assets/avatar-kl.svg";
 import avatarMJ from "@/assets/avatar-mj.svg";
 
 import { DMark } from "@/components/DMark";
+import { SEO } from "@/components/SEO";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+
+const landingJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: SITE_NAME,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    featureList: [
+      "Deal pipeline tracking",
+      "Contact and company management",
+      "Activity logging",
+      "Task management",
+      "Revenue forecasting",
+      "Sales reporting",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/social-card.svg`,
+  },
+];
 
 function FadedGrid({ className = "" }: { className?: string }) {
   return (
@@ -172,6 +206,21 @@ export default function Landing() {
 
   return (
     <div className="force-light min-h-screen bg-background text-foreground antialiased">
+      <SEO
+        title="Dealflow — Pipeline CRM for modern sales teams"
+        titleTemplate={(t) => t}
+        description={SITE_DESCRIPTION}
+        path="/"
+        jsonLd={landingJsonLd}
+      />
+
+      {/* Skip to main content — accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-foreground focus:px-4 focus:py-2 focus:text-background focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
 
       {/* Nav — appears on scroll */}
       <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 lg:px-20 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300 ${showNav ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
@@ -196,7 +245,7 @@ export default function Landing() {
       </nav>
 
       {/* ─── Hero ─── */}
-      <section className="relative overflow-hidden bg-white">
+      <section id="main-content" className="relative overflow-hidden bg-white">
         <FadedGrid className="text-foreground/[0.04]" />
         <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-10 pb-20 md:pt-16 md:pb-32">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">

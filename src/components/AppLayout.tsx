@@ -31,9 +31,15 @@ export function AppLayout() {
 
   return (
     <SidebarProvider>
+      <a
+        href="#app-main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-md focus:bg-foreground focus:px-4 focus:py-2 focus:text-background focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <div className="flex min-h-screen w-full">
         <AppSidebar />
-        <main className="flex-1 overflow-auto">
+        <main id="app-main" className="flex-1 overflow-auto">
           <div className="flex items-center gap-2 px-4 py-3">
             <SidebarTrigger />
             <div className="ml-auto flex items-center gap-2">
