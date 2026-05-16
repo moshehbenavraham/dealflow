@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recha
 import { format, startOfMonth, addMonths } from "date-fns";
 import { TrendingUp, DollarSign, Target, BarChart3 } from "lucide-react";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 
 export default function Forecast() {
   const { data, isLoading } = useQuery({
@@ -61,6 +62,12 @@ export default function Forecast() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Forecast"
+        description="Weighted revenue projections by month — probability-adjusted pipeline value for the next six months."
+        path="/forecast"
+        noindex
+      />
       <PageBanner title="Forecast" description="Revenue projections based on your pipeline." />
 
       <div className="grid gap-4 sm:grid-cols-3">

@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Plus, CheckSquare, Search } from "lucide-react";
 
 export default function Tasks() {
@@ -25,6 +26,12 @@ export default function Tasks() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Tasks"
+        description="Manage your to-dos and reminders — stay on top of follow-ups across every deal."
+        path="/tasks"
+        noindex
+      />
       <PageBanner title="Tasks" description="Manage your to-dos and reminders.">
         <Button className="w-full sm:w-auto" onClick={() => setCreateOpen(true)}>
           <Plus className="h-4 w-4 mr-2" /> Add Task

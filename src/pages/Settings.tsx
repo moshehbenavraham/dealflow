@@ -5,10 +5,17 @@ import { TeamSettings } from "@/components/settings/TeamSettings";
 import { NotificationSettings } from "@/components/settings/NotificationSettings";
 import { EmailTemplateSettings } from "@/components/settings/EmailTemplateSettings";
 import { ConnectorSettings } from "@/components/settings/ConnectorSettings";
+import { SEO } from "@/components/SEO";
 
 export default function Settings() {
   return (
     <div className="space-y-6">
+      <SEO
+        title="Settings"
+        description="Manage your profile, pipeline stages, team, notifications, email templates, and connectors."
+        path="/settings"
+        noindex
+      />
       <div>
         <h1 className="text-2xl md:text-3xl font-bold">Settings</h1>
         <p className="text-muted-foreground mt-1">Manage your account and pipeline configuration.</p>

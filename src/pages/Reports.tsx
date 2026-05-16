@@ -5,6 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
 import { formatCurrency } from "@/lib/formatters";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 
 export default function Reports() {
   const { data: stageData, isLoading: stagesLoading } = useQuery({
@@ -52,6 +53,12 @@ export default function Reports() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Reports"
+        description="Pipeline analytics and performance metrics — deal counts, win rates, average deal size, and stage distribution."
+        path="/reports"
+        noindex
+      />
       <PageBanner title="Reports" description="Pipeline analytics and performance metrics." />
 
       <div className="grid gap-4 grid-cols-2 md:grid-cols-4">

@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Plus, Activity as ActivityIcon } from "lucide-react";
 
 export default function Activities() {
@@ -39,6 +40,12 @@ export default function Activities() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Activities"
+        description="Log calls, emails, and meetings — track every interaction with your contacts and deals."
+        path="/activities"
+        noindex
+      />
       <PageBanner title="Activities" description="Track all team interactions.">
         <Button className="w-full sm:w-auto" onClick={() => setLogOpen(true)}>
           <Plus className="h-4 w-4 mr-2" /> Log Activity

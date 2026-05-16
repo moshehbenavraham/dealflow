@@ -13,6 +13,7 @@ import { RecentActivity } from "@/components/dashboard/RecentActivity";
 import { ClosingSoon } from "@/components/dashboard/ClosingSoon";
 import { MiniPipelineChart } from "@/components/dashboard/MiniPipelineChart";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { startOfWeek, startOfMonth, startOfQuarter } from "date-fns";
 
@@ -98,6 +99,12 @@ export default function Index() {
 
   return (
     <div className="space-y-8">
+      <SEO
+        title="Dashboard"
+        description="Your pipeline at a glance: deal counts, pipeline value, win rate, and average sales cycle."
+        path="/dashboard"
+        noindex
+      />
       <PageBanner
         title={`Welcome back${profile?.full_name ? `, ${profile.full_name}` : user?.user_metadata?.full_name ? `, ${user.user_metadata.full_name}` : ""}`}
         description="Here's your pipeline at a glance."

@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Search, Plus, Users } from "lucide-react";
 
 export default function Contacts() {
@@ -62,6 +63,12 @@ export default function Contacts() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Contacts"
+        description="Manage your contacts — search, edit details, and link them to deals and companies."
+        path="/contacts"
+        noindex
+      />
       <PageBanner title="Contacts" description="Manage your contacts and companies.">
         <Button className="w-full sm:w-auto" onClick={() => setCreateOpen(true)}>
           <Plus className="h-4 w-4 mr-2" /> Add Contact

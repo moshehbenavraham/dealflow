@@ -11,6 +11,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Search } from "lucide-react";
 
 export default function Companies() {
@@ -68,6 +69,12 @@ export default function Companies() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Companies"
+        description="Manage your company accounts — track team contacts and deal history per organization."
+        path="/companies"
+        noindex
+      />
       <PageBanner title="Companies" description="Manage your company accounts.">
         <CreateCompanyDialog />
       </PageBanner>

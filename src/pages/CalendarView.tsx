@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, CheckSquare } from "lucide-react";
 import {
   startOfMonth, endOfMonth, startOfWeek, endOfWeek,
@@ -76,6 +77,12 @@ export default function CalendarView() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Calendar"
+        description="See activities, tasks, and deal close dates in a single monthly calendar view."
+        path="/calendar"
+        noindex
+      />
       <PageBanner title="Calendar">
         <div className="flex items-center gap-2">
           <Button

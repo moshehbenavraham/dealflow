@@ -40,10 +40,19 @@
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          // Default to "system" so dark-OS visitors with no stored preference
+          // see the dark theme on first paint. next-themes is configured with
+          // `defaultTheme="system"` so this stays in sync after hydration.
           var theme = stored || "system";
           var isDark = theme === "dark" || (theme === "system" && prefersDark);
-          if (isDark) document.documentElement.classList.add("dark");
+          if (isDark) {
+            document.documentElement.classList.add("dark");
+          }
+          // Make native form controls and scrollbars track the theme too.
+          document.documentElement.style.colorScheme = isDark ? "dark" : "light";
         } catch (e) {
           /* localStorage unavailable — fall back to next-themes after hydration */
         }

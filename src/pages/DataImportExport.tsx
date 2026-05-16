@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { formatCurrency } from "@/lib/formatters";
 import { Upload, Download, FileSpreadsheet, Loader2, Check, AlertCircle } from "lucide-react";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Skeleton } from "@/components/ui/skeleton";
 import { z } from "zod";
 
@@ -237,6 +238,12 @@ export default function DataImportExport() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Import / Export"
+        description="Bulk import contacts and deals from CSV, or export your Dealflow data."
+        path="/data"
+        noindex
+      />
       <PageBanner title="Import / Export" description="Bulk import contacts and deals from CSV, or export your data." />
 
       <Tabs defaultValue="import">

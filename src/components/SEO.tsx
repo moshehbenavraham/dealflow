@@ -51,6 +51,11 @@ function upsertLink(rel: string, href: string) {
   return el;
 }
 
+function removeMeta(selector: string) {
+  const el = document.head.querySelector(selector);
+  if (el) el.parentElement?.removeChild(el);
+}
+
 /**
  * Drop-in per-page SEO manager. Updates document.title, meta description,
  * canonical, OG/Twitter tags, and (optionally) JSON-LD structured data.
@@ -123,10 +128,16 @@ export function SEO({
       name: "twitter:card",
       content: "summary_large_image",
     });
-    upsertMeta('meta[name="twitter:site"]', {
-      name: "twitter:site",
-      content: SITE_TWITTER,
-    });
+    if (SITE_TWITTER) {
+      upsertMeta('meta[name="twitter:site"]', {
+        name: "twitter:site",
+        content: SITE_TWITTER,
+      });
+    } else {
+      // No real handle yet — make sure no fictional one is left behind from
+      // index.html / a previous page render.
+      removeMeta('meta[name="twitter:site"]');
+    }
     upsertMeta('meta[name="twitter:title"]', {
       name: "twitter:title",
       content: fullTitle,

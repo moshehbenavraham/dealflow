@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { PageBanner } from "@/components/PageBanner";
+import { SEO } from "@/components/SEO";
 import { Plus, Kanban } from "lucide-react";
 
 export default function Pipeline() {
@@ -81,6 +82,12 @@ export default function Pipeline() {
 
   return (
     <div className="space-y-6">
+      <SEO
+        title="Pipeline"
+        description="Kanban view of your deal pipeline — drag deals across stages and update progress."
+        path="/pipeline"
+        noindex
+      />
       <PageBanner title="Pipeline" description="Drag deals across stages to update progress.">
         <Button className="w-full sm:w-auto" onClick={() => { setCreateStageId(stages?.[0]?.id); setCreateOpen(true); }}>
           <Plus className="h-4 w-4 mr-2" /> Create Deal
