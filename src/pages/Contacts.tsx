@@ -108,15 +108,31 @@ export default function Contacts() {
             </TableHeader>
             <TableBody>
               {contacts.map((c) => (
-                <TableRow key={c.id} className="cursor-pointer hover:bg-muted/50">
-                  <TableCell onClick={(e) => e.stopPropagation()}>
-                    <Checkbox checked={selected.has(c.id)} onCheckedChange={() => toggleSelect(c.id)} />
+                <TableRow
+                  key={c.id}
+                  className="hover:bg-muted/50 focus-within:bg-muted/50"
+                >
+                  <TableCell>
+                    <Checkbox
+                      checked={selected.has(c.id)}
+                      onCheckedChange={() => toggleSelect(c.id)}
+                      aria-label={`Select ${c.first_name} ${c.last_name}`}
+                    />
                   </TableCell>
-                  <TableCell className="font-medium" onClick={() => setSelectedContact(c)}>{c.first_name} {c.last_name}</TableCell>
-                  <TableCell className="text-muted-foreground" onClick={() => setSelectedContact(c)}>{c.email || "—"}</TableCell>
-                  <TableCell className="text-muted-foreground" onClick={() => setSelectedContact(c)}>{c.companies?.name || "—"}</TableCell>
-                  <TableCell className="hidden md:table-cell text-muted-foreground" onClick={() => setSelectedContact(c)}>{c.position || "—"}</TableCell>
-                  <TableCell className="hidden md:table-cell" onClick={() => setSelectedContact(c)}>
+                  <TableCell className="font-medium">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedContact(c)}
+                      aria-label={`Open contact: ${c.first_name} ${c.last_name}`}
+                      className="text-left rounded hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    >
+                      {c.first_name} {c.last_name}
+                    </button>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{c.email || "—"}</TableCell>
+                  <TableCell className="text-muted-foreground">{c.companies?.name || "—"}</TableCell>
+                  <TableCell className="hidden md:table-cell text-muted-foreground">{c.position || "—"}</TableCell>
+                  <TableCell className="hidden md:table-cell">
                     <div className="flex gap-1 flex-wrap">
                       {c.tags?.map((tag) => <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>)}
                     </div>

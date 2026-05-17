@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePipelines, usePipelineStages } from "@/hooks/usePipelineStages";
 import { useDeals, Deal } from "@/hooks/useDeals";
@@ -18,6 +19,7 @@ import { Plus, Kanban } from "lucide-react";
 export default function Pipeline() {
   const { user } = useAuth();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const { data: pipelines, isLoading: pipelinesLoading } = usePipelines();
   const pipeline = pipelines?.[0];
   const { data: stages, isLoading: stagesLoading } = usePipelineStages(pipeline?.id);
@@ -61,7 +63,9 @@ export default function Pipeline() {
     if (error) toast({ title: "Error", description: error.message, variant: "destructive" });
     else {
       toast({ title: "Pipeline created!" });
-      window.location.reload();
+      // Soft refresh via React Query — full-page reload would destroy the
+      // Supabase session warmup and TanStack Query cache.
+      await queryClient.invalidateQueries({ queryKey: ["pipelines"] });
     }
   };
 

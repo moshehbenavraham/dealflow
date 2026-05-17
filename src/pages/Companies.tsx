@@ -107,20 +107,41 @@ export default function Companies() {
                 </TableRow>
               ) : (
                 filtered.map((company) => (
-                  <TableRow key={company.id} className="cursor-pointer">
-                    <TableCell onClick={(e) => e.stopPropagation()}>
-                      <Checkbox checked={selected.has(company.id)} onCheckedChange={() => toggleSelect(company.id)} />
+                  <TableRow
+                    key={company.id}
+                    className="hover:bg-muted/50 focus-within:bg-muted/50"
+                  >
+                    <TableCell>
+                      <Checkbox
+                        checked={selected.has(company.id)}
+                        onCheckedChange={() => toggleSelect(company.id)}
+                        aria-label={`Select ${company.name}`}
+                      />
                     </TableCell>
-                    <TableCell className="font-medium" onClick={() => setSelectedCompany(company)}>{company.name}</TableCell>
-                    <TableCell onClick={() => setSelectedCompany(company)}>{company.industry || "—"}</TableCell>
+                    <TableCell className="font-medium">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCompany(company)}
+                        aria-label={`Open company: ${company.name}`}
+                        className="text-left rounded hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                      >
+                        {company.name}
+                      </button>
+                    </TableCell>
+                    <TableCell>{company.industry || "—"}</TableCell>
                     <TableCell className="hidden sm:table-cell">
                       {company.website ? (
-                        <a href={company.website} target="_blank" rel="noopener" className="text-primary hover:underline" onClick={(e) => e.stopPropagation()}>
+                        <a
+                          href={company.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded"
+                        >
                           {company.website.replace(/^https?:\/\//, "")}
                         </a>
                       ) : "—"}
                     </TableCell>
-                    <TableCell className="text-right" onClick={() => setSelectedCompany(company)}>{contactCount(company.id)}</TableCell>
+                    <TableCell className="text-right">{contactCount(company.id)}</TableCell>
                   </TableRow>
                 ))
               )}
